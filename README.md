@@ -15,7 +15,8 @@ $ docker build .
 
 5. Create a directory for storing your keepass data files. If you already have keepass data files created beforhand, you can use the directory containing these files as well.
 
-6. Run keepass2. The "-p" argument is needed if you plan to connect to the KeePassHttp plugin. Or else you can omit it.
+6. Run keepass2. The "-p" argument is needed if you plan to connect to the KeePassHttp plugin. Or else you can omit it. You will also need to open up access to 127.0.0.1 for connecting to XQuartz.
+$ xhost 127.0.0.1
 $ docker run -p 127.0.0.1:19455:19455 -v <absolute-path-to-keepass-config-directory>:/root/.config/KeePass -v <absolute-path-to-keepass-data-files-directory>:/root/keepass -e DISPLAY=host.docker.internal:0 <docker-image-id>
 
 7. Also, to enable connectivity to KeePassHttp, you need to ensure that when docker container starts, the plugin listens on the docker interface. For this, once you start KeePass, go to KeePassHttp options -> Advanced Tab and then chagne the Host from localhost to '\*'
